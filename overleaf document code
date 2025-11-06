@@ -1,0 +1,289 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{fancyhdr}
+\pagestyle{plain} % default page style (page number only)
+
+\title{Martingales}
+\author{Anna Mughal}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{1. Discrete Random Variables}
+
+A \textbf{discrete random variable} is a type of random variable that can take on only a \textbf{finite or countably infinite number of possible values}.  
+Each possible value of the variable has an associated probability.
+
+\subsection*{Examples:}
+\begin{itemize}
+    \item The number of heads obtained when flipping three coins.
+    \item The number of customers arriving at a store in one hour.
+    \item The number of emails received in a day.
+\end{itemize}
+
+Let $X$ be a discrete random variable with possible values $x_1, x_2, \ldots, x_n$ and corresponding probabilities $P(X = x_i) = p_i$, where
+\[
+\sum_{i=1}^{n} p_i = 1.
+\]
+
+---
+
+\section*{2. Probability Mass Function (PMF)}
+
+The \textbf{probability mass function (PMF)} gives the probability that a discrete random variable equals a specific value.
+
+\[
+p(x) = P(X = x)
+\]
+
+It must satisfy the following properties:
+\begin{enumerate}
+    \item $0 \leq p(x) \leq 1$ for all $x$
+    \item $\displaystyle \sum_{x} p(x) = 1$
+\end{enumerate}
+
+---
+
+\section*{3. Expected Value (Mean)}
+
+The \textbf{expected value} (or mean) of a discrete random variable represents the long-run average outcome if the experiment were repeated many times.
+
+\[
+E[X] = \mu = \sum_{x} x \, p(x)
+\]
+
+\textit{Interpretation:} The expected value gives a measure of the central tendency or “average” of the probability distribution.
+
+---
+
+\section*{4. Variance and Standard Deviation}
+
+The \textbf{variance} measures the spread or dispersion of the random variable around its mean.
+
+\[
+Var(X) = \sigma^2 = \sum_{x} (x - \mu)^2 p(x)
+\]
+
+The \textbf{standard deviation} is the square root of the variance:
+\[
+\sigma = \sqrt{Var(X)}
+\]
+
+\textit{Alternative formula for variance:}
+\[
+Var(X) = E[X^2] - (E[X])^2
+\]
+
+where
+\[
+E[X^2] = \sum_{x} x^2 p(x)
+\]
+
+---
+
+\section*{5. Example}
+
+Suppose a random variable $X$ represents the number of times a fair coin lands heads in two tosses.  
+Then $X$ can take values $0, 1, 2$ with probabilities:
+\[
+P(X=0)=\frac{1}{4}, \quad P(X=1)=\frac{1}{2}, \quad P(X=2)=\frac{1}{4}
+\]
+
+\textbf{Expected value:}
+\[
+E[X] = 0\left(\frac{1}{4}\right) + 1\left(\frac{1}{2}\right) + 2\left(\frac{1}{4}\right) = 1
+\]
+
+\textbf{Variance:}
+\[
+Var(X) = (0-1)^2\left(\frac{1}{4}\right) + (1-1)^2\left(\frac{1}{2}\right) + (2-1)^2\left(\frac{1}{4}\right) = \frac{1}{2}
+\]
+
+\section*{1. What is a Martingale?}
+A martingale is a type of random process where the \textbf{expected future value}, given \textbf{all} past information, is \textbf{equal} to the \textbf{current value}.
+% Custom footer just for THIS page
+\thispagestyle{fancy}
+\fancyhf{} % clear header/footer
+\fancyfoot[C]{\thepage \\ \tiny
+$\{X_n\}$ = sequence of random variables; 
+$\mathcal{F}_n$ = info known up to time $n$; 
+$\mathbb{P}$ = probability law; 
+Integrability: $E[|X_n|] < \infty$ (finite average size); 
+Martingale property: $E[X_{n+1} \mid \mathcal{F}_n] = X_n$ (fair game).}
+
+\section*{2. Formal Definition}  % formal definition of a martingale to memorise
+    
+\textbf{Defintition.}
+\{ X_n : 0 \leq n \leq \infty \} \text{ is a martingale with respect to the information filtration } \mathcal{F}_n \\
+\text{and probability distribution } \mathcal{P},\text{if}
+\item \textbf{ Integrability:} $ E[|X_n|]<\infty$ for all  $n$
+\item\textbf{Martingale property:} $E[X_{n+1} \mid \mathcal{F}_n] = X_n$ for all $n$.
+
+%adding a footer for this page 
+
+
+
+
+
+
+
+
+
+\section*{3.Super/Sub Martingales}
+
+
+
+
+\section*{3.Examples}
+\subsection*{ Example 1 : Coin Flip}
+Imagine you are playing a game where you flip a fair coin. You start with $£1, \text{and for each flip:
+
+If the coin lands on heads, you win £1.
+\text{If it lands on tails, you lose £1.}
+How It Works:
+
+Current Situation:
+
+You start with £1. This is your current value.
+Next Flip:
+
+After the first flip, there are two possible outcomes:
+If it’s heads, you now have $2.
+If it’s tails, you now have $0.
+Expected Value:
+To find the expected value after the first flip, you consider both outcomes:
+Probability of heads (win $1): 50% chance of having $2.
+Probability of tails (lose $1): 50% chance of having $0.
+The expected value can be calculated as: [ E[X_1] = 0.5 \times 2 + 0.5 \times 0 = 1 ]
+This means that, on average, you can expect to have $1 after the first flip, which is the same as what you started with.
+Martingale Property:
+
+The key point here is that your expected value after the flip is equal to your current value. This illustrates the Martingale property:
+( E[X_{n+1} | F_n] = X_n )
+In this case, knowing the outcome of previous flips does not change the expected outcome of the next flip. Each flip is independent, and the best prediction for your future amount of money is simply what you have right now.
+
+\subsection*{Example 2: Fashion Brand Hype}
+- Invest in hype drops: +\$10 or -\$10 randomly  
+- No insider info → expected portfolio next drop = current → martingale
+
+\subsection*{Example 3: Social Media Flex Points}
+- Posting a meme → viral (+points) or flop (-points) equally likely  
+- Past virals don’t guarantee next → martingale
+
+\subsection*{Non-Martingale Example}
+- Buying crypto with +5\% trend daily → expected next value > current → \textbf{not a martingale} (there’s drift)
+
+\section{Multivariate Distributions}
+
+% �� overview — think "the whole girl group of random variables"
+A \textbf{multivariate distribution} describes the behavior of multiple random variables considered together.  
+Rather than studying one random variable alone, we examine how several variables interact, move together, and depend on each other.
+
+\subsection{Joint Cumulative Distribution Function (CDF)}
+
+For a vector of random variables $X = (X_1, X_2, \ldots, X_n)$, the joint CDF is defined as:
+\[
+F_X(x) = P(X_1 \leq x_1, X_2 \leq x_2, \ldots, X_n \leq x_n)
+\]
+
+% ✨ interpretation: probability that *all* variables are below their given limits.
+The joint CDF gives the probability that each variable is less than or equal to a specific value simultaneously.
+
+\subsection{Marginal CDF}
+
+The \textbf{marginal CDF} of a single variable $X_i$ can be found from the joint CDF by letting the other variables go to infinity:
+\[
+F_{X_i}(x_i) = F_X(x_1, \ldots, x_{i-1}, x_i, \infty, \ldots, \infty)
+\]
+
+% �� interpretation: focus on one variable while ignoring the rest.
+This represents the distribution of one component variable, regardless of the others.
+
+\subsection{Joint Probability Density Function (PDF)}
+
+The joint PDF is obtained by differentiating the joint CDF with respect to all variables:
+\[
+f_X(x) = \frac{\partial^n F_X(x)}{\partial x_1 \partial x_2 \ldots \partial x_n}
+\]
+
+% ☕ interpretation: gives the "density" of probability at each point — where combinations are more or less likely.
+The joint PDF provides the relative likelihood of particular combinations of variable values.
+
+\subsection{Conditional Distributions}
+
+The conditional PDF of $X_2$ given $X_1$ is defined as:
+\[
+f_{X_2|X_1}(x_2|x_1) = \frac{f_X(x_1, x_2)}{f_{X_1}(x_1)}
+\]
+
+% �� interpretation: "Given that I know X1 = x1, how does X2 behave?"
+Conditional distributions describe how one variable behaves when another variable’s value is known.
+
+\subsection{Independence of Random Variables}
+
+Random variables $X_1$ and $X_2$ are independent if:
+\[
+f_{X_1, X_2}(x_1, x_2) = f_{X_1}(x_1) \cdot f_{X_2}(x_2)
+\]
+
+% �� interpretation: no influence — they do their own thing.
+In words, independence means that knowing one variable gives no information about the other.
+
+\subsection{Conditional Independence}
+
+Two random variables $X$ and $Y$ are \textbf{conditionally independent} given $Z$ if:
+\[
+E[f(X)g(Y) | Z] = E[f(X)|Z] \cdot E[g(Y)|Z]
+\]
+
+% ��‍♀️ interpretation: X and Y might normally affect each other, but when Z is known, they chill out.
+This expresses that once $Z$ is known, $X$ and $Y$ no longer provide extra information about one another.
+
+\subsection{Mean Vector}
+
+The mean vector of $X = (X_1, X_2, \ldots, X_n)$ is:
+\[
+\mu = \begin{pmatrix}
+E[X_1] \\
+E[X_2] \\
+\vdots \\
+E[X_n]
+\end{pmatrix}
+\]
+
+% �� interpretation: each entry represents the "average vibe" of one variable.
+
+\subsection{Covariance Matrix}
+
+The covariance matrix $\Sigma$ measures how the variables vary together:
+\[
+\Sigma = E[(X - \mu)(X - \mu)^T]
+\]
+
+% �� interpretation: shows who influences who — positive = rise together, negative = opposite energy.
+The covariance matrix is symmetric and positive semi-definite.
+
+\subsection{Summary}
+
+\begin{itemize}
+    \item The \textbf{joint CDF/PDF} describe the full multi-variable relationship.
+    \item The \textbf{marginal distributions} focus on one variable at a time.
+    \item \textbf{Conditional distributions} explain how one behaves given another.
+    \item \textbf{Independence} means no mutual influence.
+    \item \textbf{Covariance matrix} captures how variables move together.
+\end{itemize}
+
+% �� summary vibe: multivariate distributions = the statistics version of tracking the whole friend group's energy at once.
+
+
+
+
+
+
+
+
+\end{document}
